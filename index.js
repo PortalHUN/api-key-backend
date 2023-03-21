@@ -20,9 +20,7 @@ app.use(require("./src/middleware/APIKey"));
 
 app.get("/", async (req, res) => {
   res.status(200).json({
-    message: `Welcome to the Questions API ${req.api.AppName}!${
-      req.api.Admin ? " Welcome Admin!" : ""
-    }`,
+    message: `Welcome to the Questions API ${req.api.AppName}!${req.api.Admin ? " Welcome Admin!" : ""}`,
   });
 });
 

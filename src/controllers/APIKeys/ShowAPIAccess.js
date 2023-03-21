@@ -3,12 +3,9 @@ const jwt = require("jsonwebtoken");
 
 const ShowAPIKey = async (req, res) => {
   const { ID, AppName } = req.body;
-  if (!(ID && AppName && Number.isInteger(ID)))
-    return res.status(400).json({ err: "Invalid data" });
+  if (!(ID && AppName && Number.isInteger(ID))) return res.status(400).json({ err: "Invalid data" });
   await db.query(
-    `SELECT * FROM api_keys WHERE ID = ${db.escape(
-      ID
-    )} AND AppName = ${db.escape(AppName)};`,
+    `SELECT * FROM api_keys WHERE ID = ${db.escape(ID)} AND AppName = ${db.escape(AppName)};`,
     async (err, result) => {
       try {
         if (err) throw { status: 500, msg: err.sqlMessage };
@@ -28,9 +25,7 @@ const ShowAPIKey = async (req, res) => {
         );
         return res.status(200).json({ token });
       } catch (error) {
-        return res
-          .status(error.status || 500)
-          .json({ err: error.msg || error || "?" });
+        return res.status(error.status || 500).json({ err: error.msg || error || "?" });
       }
     }
   );
