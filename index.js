@@ -28,13 +28,14 @@ app.use(require("./src/middleware/APIKey"));
 
 app.get("/", async (req, res) => {
   res.status(200).json({
-    message: `Welcome to the Questions API ${req.api.AppName}!${req.api.Admin ? " Welcome Admin!" : ""}`,
+    message: `Welcome${req.api.Admin ? " Admin" : ""} ${req.api.AppName} to the Questions API!`,
     user: req.api,
   });
 });
 
 //ADMIN ROUTES
-app.use(admin, require("./src/routes/APIKeyRoutes"));
+app.use("/admin/api", admin, require("./src/routes/APIKeyRoutes"));
+app.use("/admin/permissions", admin, require("./src/routes/PermissionRoutes"));
 
 app.listen(port, () => {
   console.log(`[APP] Application is running on ${port}...`);
