@@ -11,6 +11,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use("/static", express.static("public"));
 
+/*const jwt = require("jsonwebtoken");
+app.get("/asd", async (req, res) => {
+  await db.query(`SELECT * FROM api_keys WHERE ID = 1;`, async (err, result) => {
+    const token = await jwt.sign({ AppName: result[0].AppName, ApiKey: result[0].ApiKey }, process.env.APIKEYSECRET);
+    return res.json({ token: token });
+  });
+});*/
+
 const admin = require("./src/middleware/AdminMiddleware");
 
 //API CHECK
@@ -21,6 +29,7 @@ app.use(require("./src/middleware/APIKey"));
 app.get("/", async (req, res) => {
   res.status(200).json({
     message: `Welcome to the Questions API ${req.api.AppName}!${req.api.Admin ? " Welcome Admin!" : ""}`,
+    user: req.api,
   });
 });
 
