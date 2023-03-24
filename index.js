@@ -9,7 +9,6 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use("/static", express.static("public"));
 
 /*const jwt = require("jsonwebtoken");
 app.get("/asd", async (req, res) => {
@@ -20,9 +19,13 @@ app.get("/asd", async (req, res) => {
 });*/
 
 const admin = require("./src/middleware/AdminMiddleware");
+const permissionRequirement = require("./src/middleware/RequirePermission");
 
 //API CHECK
 app.use(require("./src/middleware/APIKey"));
+
+//STATIC FILES
+app.use("/static", permissionRequirement(["static"]), express.static("public"));
 
 //USER ROUTES
 
