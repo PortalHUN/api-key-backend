@@ -1,30 +1,32 @@
+# H1 Errors types in files
+---
 "Database error: " + error.sqlMessage
--CreateAPIAccess.js
--RefreshAPIAccess
--ShowAPIAccess.js
--AddPermission.js
-
+- CreateAPIAccess.js
+- RefreshAPIAccess
+- ShowAPIAccess.js
+- AddPermission.js
+---
 "Invalid data"
--CreateAPIAccess.js
--RefreshAPIAccess.js
--ShowAPIAccess.js
--AddPermission.js
--APIKey.js
-
+- CreateAPIAccess.js
+- RefreshAPIAccess.js
+- ShowAPIAccess.js
+- AddPermission.js
+- APIKey.js
+---
 "No App found with this ID"
--AddPermission.js
-
+- AddPermission.js
+---
 "This user already has these permissions or they are invalid."
--AddPermission.js
-
+- AddPermission.js
+---
 "You must have Admin privileges to use this!"
--AdminMiddleware.js
-
+- AdminMiddleware.js
+---
 "You don't have the permission to use this"
--RequirePermission.js
-
+- RequirePermission.js
+---
 "Coding error on " + req.url
--RequirePermission.js
-
+- RequirePermission.js
+---
 "Invalid JWT Token"
--APIKey.js
+- APIKey.js
