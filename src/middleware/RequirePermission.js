@@ -1,5 +1,6 @@
 const RequirePermission = (permissions) => {
   return (req, res, next) => {
+    if (req.api.Admin) return next();
     if (permissions.length == 0) return res.status(500).json({ err: "Coding error on " + req.url });
     let correct = [];
     permissions.forEach((element) => {
