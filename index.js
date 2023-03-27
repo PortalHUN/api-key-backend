@@ -10,13 +10,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-/*const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 app.get("/asd", async (req, res) => {
   await db.query(`SELECT * FROM api_keys WHERE ID = 1;`, async (err, result) => {
     const token = await jwt.sign({ AppName: result[0].AppName, ApiKey: result[0].ApiKey }, process.env.APIKEYSECRET);
     return res.json({ token: token });
   });
-});*/
+});
 
 const admin = require("./src/middleware/AdminMiddleware");
 const permissionRequirement = require("./src/middleware/RequirePermission");

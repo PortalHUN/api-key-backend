@@ -6,6 +6,7 @@ const RemovePermission = async (req, res) => {
 
   await db.query(`SELECT Perm FROM permissions WHERE AppID = ${db.escape(ID)};`, async (error, userP) => {
     if (error) return res.status(500).json({ err: "Database error: " + error.sqlMessage });
+    else if(!userP || userP.length == 0) return res.status(400).json({err:"No App found with this ID"});
 
     let userPermission = [];
     userP.forEach((element) => {
@@ -16,6 +17,7 @@ const RemovePermission = async (req, res) => {
     permissions.forEach(async (element) => {
       if (userPermission.includes(element)) correct.push(element);
     });
+    if(correct.length == 0 || !correct) return res.status(400).json({err:"This user already doesn't have these permissions"})
 
     correct.forEach(async (element) => {
       await db.query(

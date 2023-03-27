@@ -25,12 +25,18 @@
 "No App found with this ID"
 
 - AddPermission.js
-
+- RemovePermission.js
 ---
 
 "This user already has these permissions or they are invalid."
 
 - AddPermission.js
+
+---
+
+"This user already doesn't have these permissions"
+
+- RemovePermission.js
 
 ---
 
@@ -53,5 +59,11 @@
 ---
 
 "Invalid JWT Token"
+
+- APIKey.js
+
+---
+
+"Invalid signature"
 
 - APIKey.js
