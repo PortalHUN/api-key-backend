@@ -1,3 +1,3 @@
-const PermissionList = ["question_add", "question_delete", "static"];
+const PermissionList = ["static"];
 
 module.exports = PermissionList;

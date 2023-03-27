@@ -10,31 +10,31 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-const jwt = require("jsonwebtoken");
+/*const jwt = require("jsonwebtoken");
 app.get("/asd", async (req, res) => {
   await db.query(`SELECT * FROM api_keys WHERE ID = 1;`, async (err, result) => {
     const token = await jwt.sign({ AppName: result[0].AppName, ApiKey: result[0].ApiKey }, process.env.APIKEYSECRET);
     return res.json({ token: token });
   });
-});
+});*/
 
 const admin = require("./src/middleware/AdminMiddleware");
-const permissionRequirement = require("./src/middleware/RequirePermission");
+const permission = require("./src/middleware/RequirePermission");
 
 //API CHECK
 app.use(require("./src/middleware/APIKey"));
 
 //STATIC FILES
-app.use("/static", permissionRequirement(["static"]), express.static("public"));
+app.use("/static", permission(["static"]), express.static("public"));
 
 //USER ROUTES
-
 app.get("/", async (req, res) => {
   res.status(200).json({
     message: `Welcome${req.api.Admin ? " Admin" : ""} ${req.api.AppName} to the Questions API!`,
     user: req.api,
   });
 });
+app.use('/person', require('./src/routes/PersonRoutes'));
 
 //ADMIN ROUTES
 app.use("/admin/api", admin, require("./src/routes/APIKeyRoutes"));
